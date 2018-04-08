@@ -12,7 +12,63 @@
 
 คำตอบ:
 ```
-?
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+public class Score {
+    public static void main(String[] args) {
+        JSONParser parser = new JSONParser();
+        
+        try {
+            JSONArray arr = (JSONArray) parser.parse(new FileReader("C:\\Users\\dicl-intern-18-master\\data.json"));
+            
+            long total= 0,max = -999, min = 999;
+            
+            //1.1
+            for (Object o : arr) {
+                JSONObject student = (JSONObject) o;
+                long Score = (long) student.get("score");
+                total+=Score;
+            }
+            System.out.println(" 1.1: \n Average = " + (total/6)); 
+            
+            System.out.println("\n 1.2:"); 
+            for (Object o : arr) {
+                JSONObject student = (JSONObject) o;
+                String Name = (String) student.get("name");
+                long Score = (long) student.get("score");   
+                
+                //1.2
+                if(Score>70) {
+                	System.out.println("Name:" + Name + "\tScore:"+Score);
+                }
+                
+                //1.3
+                if(Score>max) {
+                	max=Score;        	
+                }if(Score<min) {
+                	min=Score;
+                }                             
+            }
+            
+            System.out.println("\n 1.3: "); 
+            System.out.println("Max:" +max);  
+            System.out.println("Min:" +min);  
+            
+        }
+        catch(FileNotFoundException fe){
+            fe.printStackTrace();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+}
+
+
 ```
 
 ## 2. Create Simple Mobile Application
@@ -36,43 +92,47 @@
 Q1: Firebase คืออะไร มีฟังก์ชั่นที่น้องๆชื่นชอบนอะไรบ้างและเพราะอะไร (อย่างน้อย 3 ฟังก์ชั่น)
 
 ```
-A1:
+A1:Firebase คือ Project ที่ถูกออกแบบมาให้เป็น API และ Cloud Storage สำหรับพัฒนา Realtime Application รองรับหลาย Platform
+ชื่อชอบ firbase storage เป็นบริการพื้นที่เก็บข้อมูล เอาไว้เก็บภาพ วิดีโอ หรือไฟล์ขนาดใหญ่ ยังใช้งาน firbase ไม่มากจึกยังไม่ค่อยรู้ฟังก์ชันต่างๆมาก
 ```
 
 Q2: REST API คืออะไร
 
 ```
-A2:
+A2:คือวิธีในการสร้าง Web Service รูปแบบนึงที่อาศัย HTTP Method (GET, POST, PUT, DELETE) ในการทำงาน และส่งผลกลับมาในรูปแบบของ JSON หรือ XML ส่งผลให้สามารถรับส่งข้อมูลไปมาข้าม Platform ได้อย่างสะดวกมาก
 ```
 
 Q3: หากต้องสร้างแอปพลิเคชั่น 1 ตัว เพื่อให้รองรับทั้งระบบ iOS และ Android วิิธีไหนที่น้องๆอยากเลือกใช้พัฒนาระหว่าง Native App กับ Cross Platform และเพราะอะไร 
 
 ```
-A3:
+A3:เลือก Cross Platform หรือ Hybrid App เพราะ สามารถแปลงไป platform อื่น ๆ ได้โดยง่าย แต่หากเราต้องการพัฒนาแอพฯ ให้มีประสิทธิภาพสูง สามารถเข้าถึงฟังก์ชั่นการทำงานของแต่ละ Platform ได้เต็มที่ ก็ควรเลือกใช้การเขียนแอพฯ แบบ native 
 ```
 
 Q4: ถ้าให้เลือกได้ 1 บ้าน น้องๆอยากอยู่บ้านไหนระหว่าง Apple , Google และ Microsoft
 
 ```
-A4:
+A4:Google
 ```
 
 Q5: เวลาว่างสิ่งที่ชอบทำที่สุดคืออะไร 2 อันดับแรก
 
 ```
-A5:
+A5:ดูหนัง,เล่นเกม
 ```
 
 Q6: แอปพลิเคชั่นไหนบนมือถือที่ชอบที่สุดและเกียจที่สุดตั้งแต่เคยใช้งานมา (ไม่รวมเกมส์) เพราะอะไร
 
 ```
-A6:
+A6:ชอบที่สุดคือ Ture wallet เพราะใช้งานสะดากสามารถโอนเงินได้ง่าย
+   และเกียจที่สุดคือ KTB netbank เพราะใช้งานยากไปไม่สะดวกต่อการใช้งาน
 ```
 
 Q7: อะไรบ้างที่น้องๆคาดว่าจะได้รับในขณะที่ฝึกงานกับพวกเรา?
 
 ```
-A7:
+A7: 1.ประสบการณ์การทำงานร่วมกับคนหมู่มาก
+    2.ความรู้และเทคนิคใหม่ๆในการทำงาน
+    
 ```
 
 ## Submitting
